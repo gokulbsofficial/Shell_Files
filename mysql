@@ -1,0 +1,38 @@
+
+# Refered Websites
+# https://www.fosstechnix.com/how-to-install-mysql-8-0-on-kali-linux/
+# https://computingforgeeks.com/how-to-install-mysql-on-kali-linux/
+# https://computingforgeeks.com/how-to-install-mysql-on-debian-linux-system/
+
+echo "Step 1: Download and Install MySQL 8 APT Repository"
+
+sudo wget https://dev.mysql.com/get/mysql-apt-config_0.8.15-1_all.deb
+sudo dpkg -i mysql-apt-config_0.8.15-1_all.deb
+
+echo "Step 2: How to Install MySQL 8.0 on Kali Linux"
+
+sudo apt-key adv --keyserver keyserver.ubuntu.com --recv-keys 467B942D3A79BD29
+
+sudo apt-get update
+sudo apt-get install mysql-server
+
+sudo apt install -y mysql-community-server
+
+sudo systemctl restart mysql
+sudo systemctl enable mysql
+sudo systemctl enable --now mysql
+
+sudo mysql_secure_installation
+
+mysql -u root -p
+
+mysql> CREATE USER 'gokulsreejith'@'%' IDENTIFIED BY 'gokulsreejith@123';
+
+mysql> FLUSH PRIVILEGES;
+
+# open MySQL port 3306 on the firewall
+sudo ufw allow mysql
+
+# allow specific addresses to connect to mysql
+sudo ufw allow from 192.168.100.222 to any port 3306
+
